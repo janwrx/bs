@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+.Board {
+  display: flex;
+  flex-direction: row;
+}
+
+.button {
+  height: 50px;
+  width: 50px;
+}
