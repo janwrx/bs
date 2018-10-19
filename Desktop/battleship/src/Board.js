@@ -9,29 +9,47 @@ class Board extends Component {
     super(props)
     this.state = {
         emptySquare: Array(5).fill(null),
-        colorHitmiss: ["blue","red"]
+        gameOver: false,
+        movesMade: 0,
+        clickColor: ["blue", "red"]
     }
   }
 
   torpedoed(i) {
-    if (this.state.emptySquare[i] !== null) {
-      console.log(this.state.colorHitmiss[0])
-    } else {
-      return this.state.colorHitmiss[1];
+    console.log("clicked")
+    let missedTarget = false
+    let hitTarget = true
+    if (this.state.emptySquare[i] === true) {
+      return (this.state.clickColor)
+
+    } else if (this.state.emptySquare[i] === false ) {
+      return (this.state.missedTarget)
     }
+
+      return this.state.clickColor;
+    }
+
+
+  resetGame() {
+    var emptySquare = Array(25).fill(null)
+    this.setState({
+      Board: emptySquare,
+      gameOver: false,
+      movesMade: 0,
+    })
   }
 
   render() {
     let emptySquare = this.state.emptySquare.map((element, index) => {
       return (
-        <Squares id={index} colors={this.state.colorHitmiss}
-        onClick={this.state.torpedoed}/>
+        <Squares id={index} colors={this.state.clickColor}
+        onClick={this.torpedoed.bind(this)}/>
       )
     })
 
     return (
       <div >
-        <button>Reset</button>
+        <button className="reset" type="submit" onClick={() => this.resetGame()}>Reset</button>
         <div className="Board">
           <div>
             {emptySquare}
